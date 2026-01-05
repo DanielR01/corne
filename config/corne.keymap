@@ -41,6 +41,24 @@
                 };
         };
 
+        combos {
+                compatible = "zmk,combos";
+                // Hold all 3 LEFT thumb keys for 5 seconds to clear Bluetooth
+                combo_btclr_left {
+                        timeout-ms = <5000>;
+                        key-positions = <36 37 38>;  // Left thumb keys: GUI, NAV, SYM
+                        bindings = <&bt BT_CLR>;
+                        require-prior-idle-ms = <500>;
+                };
+                // Hold all 3 RIGHT thumb keys for 5 seconds to clear Bluetooth
+                combo_btclr_right {
+                        timeout-ms = <5000>;
+                        key-positions = <39 40 41>;  // Right thumb keys: ENT, NUM, ALT
+                        bindings = <&bt BT_CLR>;
+                        require-prior-idle-ms = <500>;
+                };
+        };
+
         conditional_layers {
                 compatible = "zmk,conditional-layers";
                 // Activate FUN layer when both NAV and NUM are held
@@ -75,12 +93,12 @@
 // Navigation layer
 // | NONE | ESC | F5  |C-F5 |C-.  |     |   |     |HOME | UP  | END |PGUP | NONE |
 // | NONE |A-TAB|SHFT |CTRL | ALT | GUI |   |     | LFT | DWN | RGT |PGDN | NONE |
-// | NONE | C-Z | C-C | C-V | C-K | C-X |   | INS |C-LFT|     |C-RGT|     | NONE |
+// | NONE | C-Z | C-X | C-C | C-V | C-K |   | INS |C-LFT|     |C-RGT|     | NONE |
 //                    |     |     |     |   |C-ENT|     |     |
                         bindings = <
    &none        &kp ESC      &kp F5       &kp LC(F5)   &kp LC(DOT)  &none          &none        &kp HOME     &kp UP       &kp END      &kp PG_UP    &none
    &none        &kp LA(TAB)  &kp LSHFT    &kp LCTRL    &kp LALT     &kp LGUI       &none        &kp LEFT     &kp DOWN     &kp RIGHT    &kp PG_DN    &none
-   &none        &kp LC(Z)    &kp LC(C)    &kp LC(V)    &kp LC(K)    &kp LC(X)      &kp INS      &kp LC(LEFT) &none        &kp LC(RIGHT) &none       &none
+   &none        &kp LC(Z)    &kp LC(X)    &kp LC(C)    &kp LC(V)    &kp LC(K)      &kp INS      &kp LC(LEFT) &none        &kp LC(RIGHT) &none       &none
                                           &trans       &trans       &trans         &kp LC(RET)  &trans       &trans
                         >;
                 };
