@@ -59,28 +59,28 @@
 // |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U  |  I  |  O  |  P  |
 // |  A  |  S  |  D  |  F  |  G  |   |  H  |  J  |  K  |  L  |  ;  |
 // |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M  |  ,  |  .  |  /  |
-//             | GUI | NAV | SPC |   | ENT | NUM | ALT |
+//             | GUI | NAV | SYM |   | ENT | NUM | ALT |
                         bindings = <
    &kp Q        &kp W        &kp E        &kp R        &kp T          &kp Y        &kp U        &kp I        &kp O        &kp P
    &hm LCTRL A  &hm LSHFT S  &hm LALT D   &hm LGUI F   &kp G          &kp H        &hm RGUI J   &hm RALT K   &hm RSHFT L  &hm RCTRL SEMI
    &kp Z        &kp X        &kp C        &kp V        &kp B          &kp N        &kp M        &kp COMMA    &kp DOT      &kp FSLH
-                             &kp TAB      &lt NAV BSPC &kp SPACE      &kp RET      &lt NUM DEL  &kp ESC
+                             &kp LGUI     &lt NAV BSPC &lt SYM SPACE  &kp RET      &lt NUM DEL  &kp LALT
                         >;
                 };
 
                 nav_layer {
                         display-name = "Nav";
 // -----------------------------------------------------------------------------------------
-// Navigation layer - matches your Planck layer 3/4 navigation
-// | ESC | F5  |C-F5 |C-.  |     |   |     |     | UP  |     |     |
-// |A-TAB|SHFT |CTRL | MO4 |     |   |     | LFT | DWN | RGT |     |
-// | C-Z | C-C | C-V | C-K | C-X |   |     |HOME |PGDN | END |PGUP |
-//             | GUI |     | SPC |   |C-ENT| SYM | ALT |
+// Navigation layer
+// | ESC | F5  |C-F5 |C-.  |     |   |     |HOME | UP  | END |PGUP |
+// |A-TAB|SHFT |CTRL | ALT | GUI |   |     | LFT | DWN | RGT |PGDN |
+// | C-Z | C-C | C-V | C-K | C-X |   | INS |C-LFT|     |C-RGT|     |
+//             |     |     |     |   |C-ENT|     |     |
                         bindings = <
    &kp ESC      &kp F5       &kp LC(F5)   &kp LC(DOT)  &none          &none        &kp HOME     &kp UP       &kp END      &kp PG_UP
    &kp LA(TAB)  &kp LSHFT    &kp LCTRL    &kp LALT     &kp LGUI       &none        &kp LEFT     &kp DOWN     &kp RIGHT    &kp PG_DN
    &kp LC(Z)    &kp LC(C)    &kp LC(V)    &kp LC(K)    &kp LC(X)      &kp INS      &kp LC(LEFT) &none        &kp LC(RIGHT) &none
-                             &trans       &trans       &trans         &kp LC(RET)  &mo SYM      &trans
+                             &trans       &trans       &trans         &kp LC(RET)  &trans       &trans
                         >;
                 };
 
@@ -94,9 +94,9 @@
 //             | GUI | SYM | SPC |   | ENT |     | ALT |
                         bindings = <
    &none        &none        &none        &none        &none          &kp PLUS     &kp N1       &kp N2       &kp N3       &kp ASTRK
-   &none        &none        &none        &none        &none          &kp none    &kp N4       &kp N5       &kp N6       &kp N0
+   &none        &none        &none        &none        &none          &none        &kp N4       &kp N5       &kp N6       &kp N0
    &none        &none        &none        &none        &none          &kp MINUS    &kp N7       &kp N8       &kp N9       &kp FSLH
-                             &trans       &mo SYM      &trans         &trans       &trans       &trans
+                             &trans       &trans      &trans         &trans       &trans       &trans
                         >;
                 };
 
