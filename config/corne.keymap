@@ -97,9 +97,9 @@
 //                    |     |     |     |   |C-ENT|     |     |
                         bindings = <
    &none        &kp ESC      &kp F5       &kp LC(F5)   &kp LC(DOT)  &none          &none        &kp HOME     &kp UP       &kp END      &kp PG_UP    &none
-   &none        &kp LA(TAB)  &kp LSHFT    &kp LCTRL    &kp LALT     &kp LGUI       &none        &kp LEFT     &kp DOWN     &kp RIGHT    &kp PG_DN    &none
+   &none        &none        &kp LSHFT    &kp LALT     &kp LGUI     &none          &none        &kp LEFT     &kp DOWN     &kp RIGHT    &kp PG_DN    &none
    &none        &kp LC(Z)    &kp LC(X)    &kp LC(C)    &kp LC(V)    &kp LC(K)      &kp INS      &kp LC(LEFT) &none        &kp LC(RIGHT) &none       &none
-                                          &trans       &trans       &trans         &kp LC(RET)  &trans       &trans
+                                          &trans       &trans       &trans         &none        &trans       &trans
                         >;
                 };
 
@@ -152,3 +152,38 @@
                 };
         };
 };
+
+// -----------------------------------------------------------------------------------------
+// QWERTY for 36-key Corne (outer columns are &none for 42-key PCB)
+// | NONE |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U  |  I  |  O  |  P  | NONE |
+// | NONE |  A  |  S  |  D  |  F  |  G  |   |  H  |  J  |  K  |  L  |  ;  | NONE |
+// | NONE |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M  |  ,  |  .  |  /  | NONE |
+//                    | GUI | NAV | SYM |   | ENT | NUM | ALT |
+
+// -----------------------------------------------------------------------------------------
+// Navigation layer
+// | NONE | ESC | F5  |C-F5 |C-.  |     |   |     |HOME | UP  | END |PGUP | NONE |
+// | NONE |A-TAB|SHFT |CTRL | ALT | GUI |   |     | LFT | DWN | RGT |PGDN | NONE |
+// | NONE | C-Z | C-X | C-C | C-V | C-K |   | INS |C-LFT|     |C-RGT|     | NONE |
+//                    |     |     |     |   |C-ENT|     |     |
+
+// -----------------------------------------------------------------------------------------
+// Number layer
+// | NONE |     |     |     |     |     |   |  +  |  1  |  2  |  3  |  *  | NONE |
+// | NONE |     |     |     |     |     |   |     |  4  |  5  |  6  |  0  | NONE |
+// | NONE |     |     |     |     |     |   |  -  |  7  |  8  |  9  |  /  | NONE |
+//                    |     |     |     |   |     |     |     |
+
+// -----------------------------------------------------------------------------------------
+// Symbols layer - optimized for Dart/TypeScript
+// | NONE |  `  |  <  |  >  |  -  |  +  |   |  =  |  (  |  )  |  _  |  €  | NONE |
+// | NONE |  ~  |  {  |  }  |  [  |  ]  |   |  &  |  "  |  '  |  :  |  ;  | NONE |
+// | NONE |  |  |  !  |  @  |  #  |  $  |   |  %  |  ^  |  \  |  ?  |  /  | NONE |
+//                    |     |     |     |   |     |     |     |
+
+// -----------------------------------------------------------------------------------------
+// Function + Settings layer
+// | NONE |  F1 |  F2 |  F3 |  F4 |  F5 |   |BRUP |VOLDN|VOLUP|MUTE |PSCRN| NONE |
+// | NONE |  F6 |  F7 |  F8 |  F9 | F10 |   |BRDN |PREV |PLAY |NEXT |BOOT | NONE |
+// | NONE | F11 | F12 |BTCLR| BT1 | BT2 |   | BT3 | BT4 |     |     |RESET| NONE |
+//                    |     |     |     |   |     |     |     |
