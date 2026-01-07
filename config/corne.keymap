@@ -1,6 +1,5 @@
 /*
  * Copyright (c) 2020 The ZMK Contributors
- *
  * SPDX-License-Identifier: MIT
  */
 
@@ -8,6 +7,7 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/reset.h>
+#include <locale/keys_es_latin.h> // Supports Latin American Spanish layout
 
 // Layer definitions
 #define DEFAULT 0
@@ -16,7 +16,6 @@
 #define SYM     3
 #define FUN     4
 
-// Home row mods timing
 &mt {
     tapping-term-ms = <200>;
     quick-tap-ms = <150>;
@@ -29,161 +28,124 @@
 };
 
 / {
-        behaviors {
-                // Home row mod with balanced timing
-                hm: homerow_mods {
-                        compatible = "zmk,behavior-hold-tap";
-                        #binding-cells = <2>;
-                        tapping-term-ms = <200>;
-                        quick-tap-ms = <150>;
-                        flavor = "balanced";
-                        bindings = <&kp>, <&kp>;
-                };
+    behaviors {
+        hm: homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            flavor = "balanced";
+            bindings = <&kp>, <&kp>;
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+        // Hold all 3 LEFT thumb keys for 5 seconds to clear Bluetooth
+        combo_btclr_left {
+            timeout-ms = <5000>;
+            key-positions = <36 37 38>;
+            bindings = <&bt BT_CLR>;
+            require-prior-idle-ms = <500>;
+        };
+        // Hold all 3 RIGHT thumb keys for 5 seconds to clear Bluetooth
+        combo_btclr_right {
+            timeout-ms = <5000>;
+            key-positions = <39 40 41>;
+            bindings = <&bt BT_CLR>;
+            require-prior-idle-ms = <500>;
+        };
+    };
+
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <NAV NUM>;
+            then-layer = <FUN>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            display-name = "QWERTY";
+            bindings = <
+   &none  &kp Q        &kp W        &kp E        &kp R        &kp T          &kp Y        &kp U        &kp I        &kp O        &kp P             &none
+   &none  &hm LCTRL A  &hm LSHFT S  &hm LALT D   &hm LGUI F   &kp G          &kp H        &hm RGUI J   &hm RALT K   &hm RSHFT L  &hm RCTRL ES_NTIL &none
+   &none  &kp Z        &kp X        &kp C        &kp V        &kp B          &kp N        &kp M        &kp COMMA    &kp DOT      &kp ES_MINS       &none
+                                    &kp LGUI     &lt NAV BSPC &lt SYM SPACE  &kp RET      &lt NUM DEL  &kp LALT
+            >;
         };
 
-        combos {
-                compatible = "zmk,combos";
-                // Hold all 3 LEFT thumb keys for 5 seconds to clear Bluetooth
-                combo_btclr_left {
-                        timeout-ms = <5000>;
-                        key-positions = <36 37 38>;  // Left thumb keys: GUI, NAV, SYM
-                        bindings = <&bt BT_CLR>;
-                        require-prior-idle-ms = <500>;
-                };
-                // Hold all 3 RIGHT thumb keys for 5 seconds to clear Bluetooth
-                combo_btclr_right {
-                        timeout-ms = <5000>;
-                        key-positions = <39 40 41>;  // Right thumb keys: ENT, NUM, ALT
-                        bindings = <&bt BT_CLR>;
-                        require-prior-idle-ms = <500>;
-                };
+        nav_layer {
+            display-name = "Nav";
+            bindings = <
+   &none  &kp ESC      &kp F5       &kp LG(F5)   &kp LG(DOT)  &none          &none        &kp HOME     &kp UP       &kp END      &kp PG_UP    &none
+   &none  &none        &kp LSHFT    &kp LALT     &kp LGUI     &none          &none        &kp LEFT     &kp DOWN     &kp RIGHT    &kp PG_DN    &none
+   &none  &kp LG(Z)    &kp LG(X)    &kp LG(C)    &kp LG(V)    &none          &kp INS      &kp LG(LEFT) &none        &kp LG(RIGHT) &none       &none
+                                    &trans       &trans       &trans         &none        &trans       &trans
+            >;
         };
 
-        conditional_layers {
-                compatible = "zmk,conditional-layers";
-                // Activate FUN layer when both NAV and NUM are held
-                tri_layer {
-                        if-layers = <NAV NUM>;
-                        then-layer = <FUN>;
-                };
+        num_layer {
+            display-name = "Num";
+            bindings = <
+   &none  &none        &none        &none        &none        &none          &kp ES_PLUS  &kp N1       &kp N2       &kp N3       &kp ES_ASTR  &none
+   &none  &none        &none        &none        &none        &none          &none        &kp N4       &kp N5       &kp N6       &kp N0       &none
+   &none  &none        &none        &none        &none        &none          &kp ES_MINS  &kp N7       &kp N8       &kp N9       &kp ES_SLSH  &none
+                                    &trans       &trans       &trans         &trans       &trans       &trans
+            >;
         };
 
-        keymap {
-                compatible = "zmk,keymap";
-
-                default_layer {
-                        display-name = "QWERTY";
-// -----------------------------------------------------------------------------------------
-// QWERTY for 36-key Corne (outer columns are &none for 42-key PCB)
-// | NONE |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U  |  I  |  O  |  P  | NONE |
-// | NONE |  A  |  S  |  D  |  F  |  G  |   |  H  |  J  |  K  |  L  |  ;  | NONE |
-// | NONE |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M  |  ,  |  .  |  /  | NONE |
-//                    | GUI | NAV | SYM |   | ENT | NUM | ALT |
-                        bindings = <
-   &none        &kp Q        &kp W        &kp E        &kp R        &kp T          &kp Y        &kp U        &kp I        &kp O        &kp P        &none
-   &none        &hm LCTRL A  &hm LSHFT S  &hm LALT D   &hm LGUI F   &kp G          &kp H        &hm RGUI J   &hm RALT K   &hm RSHFT L  &hm RCTRL SEMI     &none
-   &none        &kp Z        &kp X        &kp C        &kp V        &kp B          &kp N        &kp M        &kp COMMA    &kp DOT      &kp FSLH     &none
-                                          &kp LGUI     &lt NAV BSPC &lt SYM SPACE  &kp RET      &lt NUM DEL  &kp LALT
-                        >;
-                };
-
-                nav_layer {
-                        display-name = "Nav";
-// -----------------------------------------------------------------------------------------
-// Navigation layer
-// | NONE | ESC | F5  |C-F5 |C-.  |     |   |     |HOME | UP  | END |PGUP | NONE |
-// | NONE |A-TAB|SHFT |CTRL | ALT | GUI |   |     | LFT | DWN | RGT |PGDN | NONE |
-// | NONE | C-Z | C-X | C-C | C-V | C-K |   | INS |C-LFT|     |C-RGT|     | NONE |
-//                    |     |     |     |   |C-ENT|     |     |
-                        bindings = <
-   &none        &kp ESC      &kp F5       &kp LC(F5)   &kp LC(DOT)  &none          &none        &kp HOME     &kp UP       &kp END      &kp PG_UP    &none
-   &none        &none        &kp LSHFT    &kp LALT     &kp LGUI     &none          &none        &kp LEFT     &kp DOWN     &kp RIGHT    &kp PG_DN    &none
-   &none        &kp LC(Z)    &kp LC(X)    &kp LC(C)    &kp LC(V)    &kp LC(K)      &kp INS      &kp LC(LEFT) &none        &kp LC(RIGHT) &none       &none
-                                          &trans       &trans       &trans         &none        &trans       &trans
-                        >;
-                };
-
-                num_layer {
-                        display-name = "Num";
-// -----------------------------------------------------------------------------------------
-// Number layer
-// | NONE |     |     |     |     |     |   |  +  |  1  |  2  |  3  |  *  | NONE |
-// | NONE |     |     |     |     |     |   |     |  4  |  5  |  6  |  0  | NONE |
-// | NONE |     |     |     |     |     |   |  -  |  7  |  8  |  9  |  /  | NONE |
-//                    |     |     |     |   |     |     |     |
-                        bindings = <
-   &none        &none        &none        &none        &none        &none          &kp PLUS     &kp N1       &kp N2       &kp N3       &kp ASTRK    &none
-   &none        &none        &none        &none        &none        &none          &none        &kp N4       &kp N5       &kp N6       &kp N0       &none
-   &none        &none        &none        &none        &none        &none          &kp MINUS    &kp N7       &kp N8       &kp N9       &kp FSLH     &none
-                                          &trans       &trans       &trans         &trans       &trans       &trans
-                        >;
-                };
-
-                sym_layer {
-                        display-name = "Sym";
-// -----------------------------------------------------------------------------------------
-// Symbols layer - optimized for Dart/TypeScript
-// | NONE |  `  |  <  |  >  |  -  |  +  |   |  =  |  (  |  )  |  _  |  €  | NONE |
-// | NONE |  ~  |  {  |  }  |  [  |  ]  |   |  &  |  "  |  '  |  :  |  ;  | NONE |
-// | NONE |  |  |  !  |  @  |  #  |  $  |   |  %  |  ^  |  \  |  ?  |  /  | NONE |
-//                    |     |     |     |   |     |     |     |
-                        bindings = <
-   &none        &kp GRAVE    &kp LT       &kp GT       &kp MINUS    &kp PLUS       &kp EQUAL    &kp LPAR     &kp RPAR     &kp UNDER    &kp RA(N4)   &none
-   &none        &kp TILDE    &kp LBRC     &kp RBRC     &kp LBKT     &kp RBKT       &kp AMPS     &kp DQT      &kp SQT      &kp COLON    &kp SEMI     &none
-   &none        &kp PIPE     &kp EXCL     &kp AT       &kp HASH     &kp DLLR       &kp PRCNT    &kp CARET    &kp BSLH     &kp QMARK    &kp FSLH     &none
-                                          &trans       &trans       &trans         &trans       &trans       &trans
-                        >;
-                };
-
-                fun_layer {
-                        display-name = "Fun";
-// -----------------------------------------------------------------------------------------
-// Function + Settings layer
-// | NONE |  F1 |  F2 |  F3 |  F4 |  F5 |   |BRUP |VOLDN|VOLUP|MUTE |PSCRN| NONE |
-// | NONE |  F6 |  F7 |  F8 |  F9 | F10 |   |BRDN |PREV |PLAY |NEXT |BOOT | NONE |
-// | NONE | F11 | F12 |BTCLR| BT1 | BT2 |   | BT3 | BT4 |     |     |RESET| NONE |
-//                    |     |     |     |   |     |     |     |
-                        bindings = <
-   &none        &kp F1       &kp F2       &kp F3       &kp F4       &kp F5         &kp C_BRI_UP &kp C_VOL_DN &kp C_VOL_UP &kp C_MUTE   &kp PSCRN    &none
-   &none        &kp F6       &kp F7       &kp F8       &kp F9       &kp F10        &kp C_BRI_DN &kp C_PREV   &kp C_PP     &kp C_NEXT   &bootloader  &none
-   &none        &kp F11      &kp F12      &bt BT_CLR   &bt BT_SEL 0 &bt BT_SEL 1   &bt BT_SEL 2 &bt BT_SEL 3 &none        &none        &sys_reset   &none
-                                          &trans       &trans       &trans         &trans       &trans       &trans
-                        >;
-                };
+        sym_layer {
+            display-name = "Sym";
+            bindings = <
+   &none  &kp ES_IQUE  &kp ES_QUES  &kp ES_IEXCL &kp ES_EXCL  &kp ES_BSLH    &kp ES_PIPE  &kp ES_LPAR  &kp ES_RPAR  &kp ES_LT    &kp ES_GT    &none
+   &none  &kp ES_GRV   &kp ES_TILD  &kp ES_DQUOT &kp ES_SQUOT &kp ES_AMPS    &kp ES_HASH  &kp ES_LBRC  &kp ES_RBRC  &kp ES_LBKT  &kp ES_RBKT  &none
+   &none  &kp ES_CIRC  &kp ES_PERC  &kp ES_AT    &kp ES_DLLR  &kp ES_EURO    &kp ES_ASTR  &kp ES_PLUS  &kp ES_EQL   &kp ES_MINS  &kp ES_SLSH  &none
+                                    &trans       &trans       &trans         &trans       &trans       &trans
+            >;
         };
+
+        fun_layer {
+            display-name = "Fun";
+            bindings = <
+   &none  &kp F1       &kp F2       &kp F3       &kp F4       &kp F5         &kp C_BRI_UP &kp C_VOL_DN &kp C_VOL_UP &kp C_MUTE   &kp PSCRN    &none
+   &none  &kp F6       &kp F7       &kp F8       &kp F9       &kp F10        &kp C_BRI_DN &kp C_PREV   &kp C_PP     &kp C_NEXT   &bootloader  &none
+   &none  &kp F11      &kp F12      &bt BT_CLR   &bt BT_SEL 0 &bt BT_SEL 1   &bt BT_SEL 2 &bt BT_SEL 3 &none        &none        &sys_reset   &none
+                                    &trans       &trans       &trans         &trans       &trans       &trans
+            >;
+        };
+    };
 };
 
 // -----------------------------------------------------------------------------------------
-// QWERTY for 36-key Corne (outer columns are &none for 42-key PCB)
+// VISUAL REFERENCE FOR LEARNING
+// -----------------------------------------------------------------------------------------
+
+// QWERTY - MacOS Optimized
 // | NONE |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U  |  I  |  O  |  P  | NONE |
-// | NONE |  A  |  S  |  D  |  F  |  G  |   |  H  |  J  |  K  |  L  |  ;  | NONE |
-// | NONE |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M  |  ,  |  .  |  /  | NONE |
+// | NONE | GUI | ALT | SHFT| CTRL|  G  |   |  H  | CTRL| SHFT| ALT | GUI | NONE |
+// | NONE |  Z  |  X  |  C  |  |  |  B  |   |  N  |  M  |  ,  |  .  |  -  | NONE |
 //                    | GUI | NAV | SYM |   | ENT | NUM | ALT |
 
-// -----------------------------------------------------------------------------------------
-// Navigation layer
-// | NONE | ESC | F5  |C-F5 |C-.  |     |   |     |HOME | UP  | END |PGUP | NONE |
-// | NONE |A-TAB|SHFT |CTRL | ALT | GUI |   |     | LFT | DWN | RGT |PGDN | NONE |
-// | NONE | C-Z | C-X | C-C | C-V | C-K |   | INS |C-LFT|     |C-RGT|     | NONE |
-//                    |     |     |     |   |C-ENT|     |     |
+// NAV - MacOS (Command Based)
+// | NONE | ESC | F5  | G-F5| G-. |     |   |     | HOME|  UP | END | PGUP| NONE |
+// | NONE | ALT | SHFT| CTRL| GUI |     |   |     | LFT | DWN | RGT | PGDN| NONE |
+// | NONE | G-Z | G-X | G-C | G-V |     |   | INS |G-LFT|     |G-RGT|     | NONE |
 
-// -----------------------------------------------------------------------------------------
-// Number layer
-// | NONE |     |     |     |     |     |   |  +  |  1  |  2  |  3  |  *  | NONE |
+// NUM - Latin Spanish Layout
+// | NONE |     |     |     |     |     |   |  +  |  1  |  2  |  3  |  * | NONE |
 // | NONE |     |     |     |     |     |   |     |  4  |  5  |  6  |  0  | NONE |
 // | NONE |     |     |     |     |     |   |  -  |  7  |  8  |  9  |  /  | NONE |
-//                    |     |     |     |   |     |     |     |
 
-// -----------------------------------------------------------------------------------------
-// Symbols layer - optimized for Dart/TypeScript
-// | NONE |  `  |  <  |  >  |  -  |  +  |   |  =  |  (  |  )  |  _  |  €  | NONE |
-// | NONE |  ~  |  {  |  }  |  [  |  ]  |   |  &  |  "  |  '  |  :  |  ;  | NONE |
-// | NONE |  |  |  !  |  @  |  #  |  $  |   |  %  |  ^  |  \  |  ?  |  /  | NONE |
-//                    |     |     |     |   |     |     |     |
+// SYM - Programming Delimiters (Paired)
+// | NONE |  ¿  |  ?  |  ¡  |  !  |  \  |   |  |  |  (  |  )  |  <  |  >  | NONE |
+// | NONE |  `  |  ~  |  "  |  '  |  &  |   |  #  |  {  |  }  |  [  |  ]  | NONE |
+// | NONE |  ^  |  %  |  @  |  $  |  €  |   |  * |  +  |  =  |  -  |  /  | NONE |
 
-// -----------------------------------------------------------------------------------------
-// Function + Settings layer
+// FUN - Function & Media
 // | NONE |  F1 |  F2 |  F3 |  F4 |  F5 |   |BRUP |VOLDN|VOLUP|MUTE |PSCRN| NONE |
 // | NONE |  F6 |  F7 |  F8 |  F9 | F10 |   |BRDN |PREV |PLAY |NEXT |BOOT | NONE |
-// | NONE | F11 | F12 |BTCLR| BT1 | BT2 |   | BT3 | BT4 |     |     |RESET| NONE |
-//                    |     |     |     |   |     |     |     |
+// | NONE | F11 | F12 |BTCLR| BT1 | BT2 |   | BT3 | BT4 |     |RESET| NONE |
