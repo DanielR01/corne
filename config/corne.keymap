@@ -7,7 +7,31 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/reset.h>
-#include <locale/keys_es_latin.h> // Supports Latin American Spanish layout
+
+// --- LATIN AMERICAN SPANISH ALIASES (FOR MACOS) ---
+// These map US keys to what a Mac set to "Spanish - Latin American" expects.
+#define ES_NTIL SEMI       // ñ
+#define ES_IQUE EQUAL      // ¿
+#define ES_QUES LS(EQUAL)  // ?
+#define ES_IEXCL GRAVE     // ¡
+#define ES_EXCL LS(N1)     // !
+#define ES_AT   LA(N2)     // @ (Option + 2 on Mac)
+#define ES_HASH LA(N3)     // # (Option + 3 on Mac)
+#define ES_PIPE LA(N1)     // | (Option + 1 on Mac)
+#define ES_BSLH LA(LS(N7)) // \ (Option + Shift + 7 on Mac)
+#define ES_LBKT LA(N8)     // [ (Option + 8 on Mac)
+#define ES_RBKT LA(N9)     // ] (Option + 9 on Mac)
+#define ES_LBRC LA(LS(N8)) // { (Option + Shift + 8 on Mac)
+#define ES_RBRC LA(LS(N9)) // } (Option + Shift + 9 on Mac)
+#define ES_LPAR LS(N8)     // (
+#define ES_RPAR LS(N9)     // )
+#define ES_LT   GRAVE      // < (Often shared with ¡/!)
+#define ES_GT   LS(GRAVE)  // >
+#define ES_MINS SLASH      // -
+#define ES_PLUS RS(BSLH)   // +
+#define ES_EQL  LS(N0)     // =
+#define ES_SLSH LS(N7)     // /
+#define ES_ASTR LS(BSLH)   // *
 
 // Layer definitions
 #define DEFAULT 0
@@ -41,19 +65,15 @@
 
     combos {
         compatible = "zmk,combos";
-        // Hold all 3 LEFT thumb keys for 5 seconds to clear Bluetooth
         combo_btclr_left {
             timeout-ms = <5000>;
             key-positions = <36 37 38>;
             bindings = <&bt BT_CLR>;
-            require-prior-idle-ms = <500>;
         };
-        // Hold all 3 RIGHT thumb keys for 5 seconds to clear Bluetooth
         combo_btclr_right {
             timeout-ms = <5000>;
             key-positions = <39 40 41>;
             bindings = <&bt BT_CLR>;
-            require-prior-idle-ms = <500>;
         };
     };
 
@@ -71,9 +91,9 @@
         default_layer {
             display-name = "QWERTY";
             bindings = <
-   &none  &kp Q        &kp W        &kp E        &kp R        &kp T          &kp Y        &kp U        &kp I        &kp O        &kp P             &none
-   &none  &hm LCTRL A  &hm LSHFT S  &hm LALT D   &hm LGUI F   &kp G          &kp H        &hm RGUI J   &hm RALT K   &hm RSHFT L  &hm RCTRL ES_NTIL &none
-   &none  &kp Z        &kp X        &kp C        &kp V        &kp B          &kp N        &kp M        &kp COMMA    &kp DOT      &kp ES_MINS       &none
+   &none  &kp Q        &kp W        &kp E        &kp R        &kp T          &kp Y        &kp U        &kp I        &kp O        &kp P         &none
+   &none  &hm LGUI A   &hm LALT S   &hm LSHFT D  &hm LCTRL F  &kp G          &kp H        &hm RCTRL J  &hm RSHFT K  &hm RALT L   &hm RGUI ES_NTIL &none
+   &none  &kp Z        &kp X        &kp C        &kp V        &kp B          &kp N        &kp M        &kp COMMA    &kp DOT      &kp ES_MINS   &none
                                     &kp LGUI     &lt NAV BSPC &lt SYM SPACE  &kp RET      &lt NUM DEL  &kp LALT
             >;
         };
@@ -82,7 +102,7 @@
             display-name = "Nav";
             bindings = <
    &none  &kp ESC      &kp F5       &kp LG(F5)   &kp LG(DOT)  &none          &none        &kp HOME     &kp UP       &kp END      &kp PG_UP    &none
-   &none  &none        &kp LSHFT    &kp LALT     &kp LGUI     &none          &none        &kp LEFT     &kp DOWN     &kp RIGHT    &kp PG_DN    &none
+   &none  &kp LALT     &kp LSHFT    &kp LCTRL    &kp LGUI     &none          &none        &kp LEFT     &kp DOWN     &kp RIGHT    &kp PG_DN    &none
    &none  &kp LG(Z)    &kp LG(X)    &kp LG(C)    &kp LG(V)    &none          &kp INS      &kp LG(LEFT) &none        &kp LG(RIGHT) &none       &none
                                     &trans       &trans       &trans         &none        &trans       &trans
             >;
@@ -102,8 +122,8 @@
             display-name = "Sym";
             bindings = <
    &none  &kp ES_IQUE  &kp ES_QUES  &kp ES_IEXCL &kp ES_EXCL  &kp ES_BSLH    &kp ES_PIPE  &kp ES_LPAR  &kp ES_RPAR  &kp ES_LT    &kp ES_GT    &none
-   &none  &kp ES_GRV   &kp ES_TILD  &kp ES_DQUOT &kp ES_SQUOT &kp ES_AMPS    &kp ES_HASH  &kp ES_LBRC  &kp ES_RBRC  &kp ES_LBKT  &kp ES_RBKT  &none
-   &none  &kp ES_CIRC  &kp ES_PERC  &kp ES_AT    &kp ES_DLLR  &kp ES_EURO    &kp ES_ASTR  &kp ES_PLUS  &kp ES_EQL   &kp ES_MINS  &kp ES_SLSH  &none
+   &none  &kp GRAVE    &kp LS(N6)   &kp LS(N2)   &kp LS(N3)   &kp LS(N6)     &kp ES_AT    &kp ES_LBRC  &kp ES_RBRC  &kp ES_LBKT  &kp ES_RBKT  &none
+   &none  &kp LS(GRAVE)&kp LS(N5)   &kp ES_HASH  &kp LS(N4)   &kp LA(LS(N2)) &kp ES_ASTR  &kp ES_PLUS  &kp ES_EQL   &kp ES_MINS  &kp ES_SLSH  &none
                                     &trans       &trans       &trans         &trans       &trans       &trans
             >;
         };
@@ -126,26 +146,15 @@
 
 // QWERTY - MacOS Optimized
 // | NONE |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U  |  I  |  O  |  P  | NONE |
-// | NONE | GUI | ALT | SHFT| CTRL|  G  |   |  H  | CTRL| SHFT| ALT | GUI | NONE |
-// | NONE |  Z  |  X  |  C  |  |  |  B  |   |  N  |  M  |  ,  |  .  |  -  | NONE |
-//                    | GUI | NAV | SYM |   | ENT | NUM | ALT |
+// | NONE | CMD | ALT | SHFT| CTRL|  G  |   |  H  | CTRL| SHFT| ALT | CMD | NONE |
+// | NONE |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M  |  ,  |  .  |  -  | NONE |
 
-// NAV - MacOS (Command Based)
-// | NONE | ESC | F5  | G-F5| G-. |     |   |     | HOME|  UP | END | PGUP| NONE |
-// | NONE | ALT | SHFT| CTRL| GUI |     |   |     | LFT | DWN | RGT | PGDN| NONE |
-// | NONE | G-Z | G-X | G-C | G-V |     |   | INS |G-LFT|     |G-RGT|     | NONE |
+// NAV - MacOS (Command/GUI Based)
+// | NONE | ESC | F5  |CMD-F5|CMD-.|     |   |     | HOME|  UP | END | PGUP| NONE |
+// | NONE | ALT | SHFT| CTRL| CMD |     |   |     | LFT | DWN | RGT | PGDN| NONE |
+// | NONE |CMD-Z|CMD-X|CMD-C|CMD-V|     |   | INS |C-LFT|     |C-RGT|     | NONE |
 
-// NUM - Latin Spanish Layout
-// | NONE |     |     |     |     |     |   |  +  |  1  |  2  |  3  |  * | NONE |
-// | NONE |     |     |     |     |     |   |     |  4  |  5  |  6  |  0  | NONE |
-// | NONE |     |     |     |     |     |   |  -  |  7  |  8  |  9  |  /  | NONE |
-
-// SYM - Programming Delimiters (Paired)
+// SYM - Paired Delimiters
 // | NONE |  ¿  |  ?  |  ¡  |  !  |  \  |   |  |  |  (  |  )  |  <  |  >  | NONE |
-// | NONE |  `  |  ~  |  "  |  '  |  &  |   |  #  |  {  |  }  |  [  |  ]  | NONE |
-// | NONE |  ^  |  %  |  @  |  $  |  €  |   |  * |  +  |  =  |  -  |  /  | NONE |
-
-// FUN - Function & Media
-// | NONE |  F1 |  F2 |  F3 |  F4 |  F5 |   |BRUP |VOLDN|VOLUP|MUTE |PSCRN| NONE |
-// | NONE |  F6 |  F7 |  F8 |  F9 | F10 |   |BRDN |PREV |PLAY |NEXT |BOOT | NONE |
-// | NONE | F11 | F12 |BTCLR| BT1 | BT2 |   | BT3 | BT4 |     |RESET| NONE |
+// | NONE |  `  |  ~  |  "  |  '  |  &  |   |  @  |  {  |  }  |  [  |  ]  | NONE |
+// | NONE |  ^  |  %  |  #  |  $  |  €  |   |  * |  +  |  =  |  -  |  /  | NONE |
