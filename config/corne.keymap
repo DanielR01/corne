@@ -9,36 +9,36 @@
 #include <dt-bindings/zmk/reset.h>
 
 // --- MAC-SPECIFIC LATIN AMERICAN SPANISH MAPPINGS (FULL NAMES) ---
-#define ES_NTIL SEMI        // ñ
-#define ES_QUES (LS(MINUS)) // ? (Shift + ')
-#define ES_IQUE (LS(EQUAL)) // ¿ (Shift + ¡)
-#define ES_EXCL (LS(N1))    // !
-#define ES_IEXCL EQUAL      // ¡
-#define ES_LPAR (LS(N8))    // (
-#define ES_RPAR (LS(N9))    // )
-#define ES_LBKT (LA(N8))    // [ (Option + 8)
-#define ES_RBKT (LA(N9))    // ] (Option + 9)
+#define ES_NTIL SEMI         // ñ
+#define ES_QUES (LS(MINUS))  // ? (Shift + ')
+#define ES_IQUE EQUAL        // ¿ (key right of ')
+#define ES_EXCL (LS(N1))     // !
+#define ES_IEXCL (LS(EQUAL)) // ¡
+#define ES_LPAR (LS(N8))     // (
+#define ES_RPAR (LS(N9))     // )
+#define ES_LBKT (LA(N8))     // [ (Option + 8)
+#define ES_RBKT (LA(N9))     // ] (Option + 9)
 #define ES_LBRC (LA(LS(N8))) // { (Option + Shift + 8)
 #define ES_RBRC (LA(LS(N9))) // } (Option + Shift + 9)
-#define ES_LT   GRAVE       // <
-#define ES_GT   (LS(GRAVE)) // >
+#define ES_LT   NON_US_BSLH  // < (Key usually left of Z or 1 on ISO/LatAm)
+#define ES_GT   (LS(NON_US_BSLH)) // >
 #define ES_AT   (LA(N2))     // @ (Option + 2)
 #define ES_HASH (LA(N3))     // # (Option + 3)
 #define ES_PIPE (LA(N1))     // | (Option + 1)
 #define ES_BSLH (LA(LS(N7))) // \ (Option + Shift + 7)
-#define ES_DQUO (LS(N2))    // "
-#define ES_SQUO MINUS       // '
-#define ES_AMPS (LS(N6))    // &
-#define ES_SLSH (LS(N7))    // /
-#define ES_ASTR (LS(RBKT))  // *
-#define ES_PLUS RBKT        // +
-#define ES_EQL  (LS(N0))    // =
-#define ES_MINS SLASH       // -
-#define ES_UNDR (LS(SLASH)) // _
-#define ES_CIRC (LS(LBKT))  // ^
+#define ES_DQUO (LS(N2))     // "
+#define ES_SQUO MINUS        // '
+#define ES_AMPS (LS(N6))     // &
+#define ES_SLSH (LS(N7))     // /
+#define ES_ASTR (LS(RBKT))   // *
+#define ES_PLUS RBKT         // +
+#define ES_EQL  (LS(N0))     // =
+#define ES_MINS SLASH        // -
+#define ES_UNDR (LS(SLASH))  // _
+#define ES_CIRC (LS(LBKT))   // ^
 #define ES_TILD (LA(N))      // ~ (Option + n)
 #define ES_EURO (LA(LS(N2))) // € (Option + Shift + 2)
-#define ES_DLLR (LS(N4))    // $
+#define ES_DLLR (LS(N4))     // $
 
 // Layer definitions
 #define DEFAULT 0
@@ -99,7 +99,7 @@
             display-name = "QWERTY";
             bindings = <
    &none  &kp Q        &kp W        &kp E        &kp R        &kp T          &kp Y        &kp U        &kp I        &kp O        &kp P         &none
-   &none  &hm LGUI A   &hm LALT S   &hm LSHFT D  &hm LCTRL F  &kp G          &kp H        &hm RCTRL J  &hm RSHFT K  &hm RALT L   &hm RGUI ES_NTIL &none
+   &none  &hm LCTRL A  &hm LALT S   &hm LSHFT D  &hm LGUI F   &kp G          &kp H        &hm RGUI J   &hm RSHFT K  &hm RALT L   &hm RCTRL ES_NTIL &none
    &none  &kp Z        &kp X        &kp C        &kp V        &kp B          &kp N        &kp M        &kp COMMA    &kp DOT      &kp ES_MINS   &none
                                     &kp LGUI     &lt NAV BSPC &lt SYM SPACE  &kp RET      &lt NUM DEL  &kp LALT
             >;
@@ -109,7 +109,7 @@
             display-name = "Nav";
             bindings = <
    &none  &kp ESC      &kp F5       &kp LG(F5)   &kp LG(DOT)  &none          &none        &kp HOME     &kp UP       &kp END      &kp PG_UP    &none
-   &none  &kp LALT     &kp LSHFT    &kp LCTRL    &kp LGUI     &none          &none        &kp LEFT     &kp DOWN     &kp RIGHT    &kp PG_DN    &none
+   &none  &none        &kp LSHFT    &kp LALT     &kp LGUI     &none          &none        &kp LEFT     &kp DOWN     &kp RIGHT    &kp PG_DN    &none
    &none  &kp LG(Z)    &kp LG(X)    &kp LG(C)    &kp LG(V)    &none          &kp INS      &kp LG(LEFT) &none        &kp LG(RIGHT) &none       &none
                                     &trans       &trans       &trans         &none        &trans       &trans
             >;
@@ -146,3 +146,33 @@
         };
     };
 };
+
+// -----------------------------------------------------------------------------------------
+// VISUAL REFERENCE FOR LEARNING
+// -----------------------------------------------------------------------------------------
+
+// QWERTY - MacOS Optimized
+// | NONE |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U  |  I  |  O  |  P  | NONE |
+// | NONE | CTRL| ALT | SHFT| CMD |  G  |   |  H  | CMD | SHFT| ALT | CTRL| NONE |
+// | NONE |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M  |  ,  |  .  |  -  | NONE |
+//                    | CMD | NAV | SYM |   | ENT | NUM | ALT |
+
+// NAV - MacOS (Command Key)
+// | NONE | ESC | F5  |CMD-F5|CMD-.|     |   |     | HOME|  UP | END | PGUP| NONE |
+// | NONE |     | SHFT| ALT  | CMD |     |   |     | LFT | DWN | RGT | PGDN| NONE |
+// | NONE |CMD-Z|CMD-X|CMD-C |CMD-V|     |   | INS |C-LFT|     |C-RGT|     | NONE |
+
+// NUM - Latin Spanish Layout
+// | NONE |     |     |     |     |     |   |  +  |  1  |  2  |  3  |  * | NONE |
+// | NONE |     |     |     |     |     |   |     |  4  |  5  |  6  |  0  | NONE |
+// | NONE |     |     |     |     |     |   |  -  |  7  |  8  |  9  |  /  | NONE |
+
+// SYM - Logic & Pairs
+// | NONE |  ¿  |  ?  |  ¡  |  !  |  (  |   |  )  |  [  |  ]  |  {  |  }  | NONE |
+// | NONE |  `  |  ~  |  "  |  '  |  <  |   |  >  |  \  |  |  |  @  |  #  | NONE |
+// | NONE |  ^  |  %  |  &  |  €  |  +  |   |  * |  -  |  /  |  =  |  $  | NONE |
+
+// FUN - Function & Media
+// | NONE |  F1 |  F2 |  F3 |  F4 |  F5 |   |BRUP |VOLDN|VOLUP|MUTE |PSCRN| NONE |
+// | NONE |  F6 |  F7 |  F8 |  F9 | F10 |   |BRDN |PREV |PLAY |NEXT |BOOT | NONE |
+// | NONE | F11 | F12 |BTCLR| BT1 | BT2 |   | BT3 | BT4 |     |RESET| NONE |
