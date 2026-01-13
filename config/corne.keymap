@@ -35,10 +35,11 @@
 #define ES_EQL  (LS(N0))     // =
 #define ES_MINS SLASH        // -
 #define ES_UNDR (LS(SLASH))  // _
-#define ES_CIRC (LS(LBKT))   // ^
+#define ES_CIRC (LA(LS(LBKT))) // ^ (Option + Shift + [ on Mac LatAm)
 #define ES_TILD (LA(N))      // ~ (Option + n)
-#define ES_EURO (LA(LS(N2))) // € (Option + Shift + 2)
+#define ES_EURO (LA(LS(N2))) // € (Option + Shift + 2 on Mac LatAm)
 #define ES_DLLR (LS(N4))     // $
+#define ES_GRV  (LA(LS(RBKT))) // ` (Option + Shift + ] on Mac LatAm)
 
 // Layer definitions
 #define DEFAULT 0
@@ -129,7 +130,7 @@
             display-name = "Sym";
             bindings = <
    &none  &kp ES_IQUE  &kp ES_QUES  &kp ES_IEXCL &kp ES_EXCL  &kp ES_LPAR    &kp ES_RPAR  &kp ES_LBKT  &kp ES_RBKT  &kp ES_LBRC  &kp ES_RBRC  &none
-   &none  &kp GRAVE    &kp ES_TILD  &kp ES_DQUO  &kp ES_SQUO  &kp ES_LT      &kp ES_GT    &kp ES_BSLH  &kp ES_PIPE  &kp ES_AT    &kp ES_HASH  &none
+   &none  &kp ES_GRV   &kp ES_TILD  &kp ES_DQUO  &kp ES_SQUO  &kp ES_LT      &kp ES_GT    &kp ES_BSLH  &kp ES_PIPE  &kp ES_AT    &kp ES_HASH  &none
    &none  &kp ES_CIRC  &kp (LS(N5)) &kp ES_AMPS  &kp ES_EURO  &kp ES_PLUS    &kp ES_ASTR  &kp ES_MINS  &kp ES_SLSH  &kp ES_EQL   &kp ES_DLLR  &none
                                     &trans       &trans       &trans         &trans       &trans       &trans
             >;
