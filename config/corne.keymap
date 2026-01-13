@@ -130,7 +130,7 @@
             display-name = "Sym";
             bindings = <
    &none  &kp ES_IQUE  &kp ES_QUES  &kp ES_IEXCL &kp ES_EXCL  &kp ES_LPAR    &kp ES_RPAR  &kp ES_LBKT  &kp ES_RBKT  &kp ES_LBRC  &kp ES_RBRC  &none
-   &none  &kp ES_GRV   &kp ES_TILD  &kp ES_DQUO  &kp ES_SQUO  &kp ES_LT      &kp ES_GT    &kp ES_BSLH  &kp ES_PIPE  &kp ES_AT    &kp ES_HASH  &none
+   &none  &kp GRAVE    &kp ES_TILD  &kp ES_DQUO  &kp ES_SQUO  &kp ES_LT      &kp ES_GT    &kp ES_BSLH  &kp ES_PIPE  &kp ES_AT    &kp ES_HASH  &none
    &none  &kp CARET    &kp (LS(N5)) &kp ES_AMPS  &kp ES_ASTR  &kp ES_PLUS    &kp ES_MINS  &kp ES_SLSH  &kp ES_EURO  &kp ES_EQL   &kp ES_DLLR  &none
                                     &trans       &trans       &trans         &trans       &trans       &trans
             >;
