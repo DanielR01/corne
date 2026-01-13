@@ -102,7 +102,7 @@
    &none  &kp Q        &kp W        &kp E        &kp R        &kp T          &kp Y        &kp U        &kp I        &kp O        &kp P         &none
    &none  &hm LCTRL A  &hm LALT S   &hm LSHFT D  &hm LGUI F   &kp G          &kp H        &hm RGUI J   &hm RSHFT K  &hm RALT L   &hm RCTRL ES_NTIL &none
    &none  &kp Z        &kp X        &kp C        &kp V        &kp B          &kp N        &kp M        &kp COMMA    &kp DOT      &kp ES_MINS   &none
-                                    &kp LGUI     &lt NAV BSPC &lt SYM SPACE  &kp RET      &lt NUM DEL  &kp LALT
+                                    &mt LGUI CAPS &lt NAV BSPC &lt SYM SPACE  &kp RET      &lt NUM DEL  &mt LALT TAB
             >;
         };
 
@@ -131,7 +131,7 @@
             bindings = <
    &none  &kp ES_IQUE  &kp ES_QUES  &kp ES_IEXCL &kp ES_EXCL  &kp ES_LPAR    &kp ES_RPAR  &kp ES_LBKT  &kp ES_RBKT  &kp ES_LBRC  &kp ES_RBRC  &none
    &none  &kp ES_GRV   &kp ES_TILD  &kp ES_DQUO  &kp ES_SQUO  &kp ES_LT      &kp ES_GT    &kp ES_BSLH  &kp ES_PIPE  &kp ES_AT    &kp ES_HASH  &none
-   &none  &kp ES_CIRC  &kp (LS(N5)) &kp ES_AMPS  &kp ES_EURO  &kp ES_PLUS    &kp ES_ASTR  &kp ES_MINS  &kp ES_SLSH  &kp ES_EQL   &kp ES_DLLR  &none
+   &none  &kp ES_CIRC  &kp (LS(N5)) &kp ES_AMPS  &kp ES_ASTR  &kp ES_PLUS    &kp ES_MINS  &kp ES_SLSH  &kp ES_EURO  &kp ES_EQL   &kp ES_DLLR  &none
                                     &trans       &trans       &trans         &trans       &trans       &trans
             >;
         };
@@ -156,7 +156,7 @@
 // | NONE |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U  |  I  |  O  |  P  | NONE |
 // | NONE | CTRL| ALT | SHFT| CMD |  G  |   |  H  | CMD | SHFT| ALT | CTRL| NONE |
 // | NONE |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M  |  ,  |  .  |  -  | NONE |
-//                    | CMD | NAV | SYM |   | ENT | NUM | ALT |
+//                    | CAPS| NAV | SYM |   | ENT | NUM | TAB |
 
 // NAV - MacOS (Command Key)
 // | NONE | ESC | F5  |CMD-F5|CMD-.|     |   |     | HOME|  UP | END | PGUP| NONE |
@@ -171,7 +171,7 @@
 // SYM - Logic & Pairs
 // | NONE |  ¿  |  ?  |  ¡  |  !  |  (  |   |  )  |  [  |  ]  |  {  |  }  | NONE |
 // | NONE |  `  |  ~  |  "  |  '  |  <  |   |  >  |  \  |  |  |  @  |  #  | NONE |
-// | NONE |  ^  |  %  |  &  |  €  |  +  |   |  * |  -  |  /  |  =  |  $  | NONE |
+// | NONE |  ^  |  %  |  &  |  * |  +  |   |  -  |  /  |  €  |  =  |  $  | NONE |
 
 // FUN - Function & Media
 // | NONE |  F1 |  F2 |  F3 |  F4 |  F5 |   |BRUP |VOLDN|VOLUP|MUTE |PSCRN| NONE |
