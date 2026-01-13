@@ -35,11 +35,11 @@
 #define ES_EQL  (LS(N0))     // =
 #define ES_MINS SLASH        // -
 #define ES_UNDR (LS(SLASH))  // _
-#define ES_CIRC (LS(LBRKT))  // ^ (In Mac LatAm: Shift + key right of P)
+#define ES_CIRC (LS(LBKT))  // ^ (In Mac LatAm: Shift + key right of P)
 #define ES_TILD (LA(N))      // ~ (Option + n)
 #define ES_EURO (LA(LS(N2))) // € (Option + Shift + 2 on Mac LatAm)
 #define ES_DLLR (LS(N4))     // $
-#define ES_GRV  (LS(RBRKT))  // ` (In Mac LatAm: Shift + key right of ^)
+#define ES_GRV  (LS(RBKT))  // ` (In Mac LatAm: Shift + key right of ^)
 
 // Layer definitions
 #define DEFAULT 0
