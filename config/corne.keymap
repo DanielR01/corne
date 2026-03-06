@@ -61,14 +61,7 @@
 
 / {
     behaviors {
-        hm: homerow_mods {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <150>;
-            flavor = "balanced";
-            bindings = <&kp>, <&kp>;
-        };
+        // Behaviors block is kept for potential future additions
     };
 
     combos {
@@ -100,9 +93,9 @@
             display-name = "QWERTY";
             bindings = <
    &none  &kp Q        &kp W        &kp E        &kp R        &kp T          &kp Y        &kp U        &kp I        &kp O        &kp P         &none
-   &none  &hm LCTRL A  &hm LALT S   &hm LSHFT D  &hm LGUI F   &kp G          &kp H        &hm RGUI J   &hm RSHFT K  &hm RALT L   &hm RCTRL ES_NTIL &none
+   &none  &mt LCTRL A  &mt LALT S   &mt LSHFT D  &mt LGUI F   &kp G          &kp H        &mt RGUI J   &mt RSHFT K  &mt RALT L   &mt RCTRL ES_NTIL &none
    &none  &kp Z        &kp X        &kp C        &kp V        &kp B          &kp N        &kp M        &kp COMMA    &kp DOT      &kp ES_MINS   &none
-                                    &mt LGUI CAPS &lt NAV BSPC &lt SYM SPACE  &kp RET      &lt NUM DEL  &mt LALT TAB
+                                    &kp CAPS     &lt NAV BSPC &lt SYM SPACE  &lt SYM RET  &lt NUM DEL  &kp TAB
             >;
         };
 
@@ -120,7 +113,7 @@
             display-name = "Num";
             bindings = <
    &none  &none        &none        &none        &none        &none          &kp ES_PLUS  &kp N1       &kp N2       &kp N3       &kp ES_ASTR  &none
-   &none  &none        &none        &none        &none        &none          &none        &kp N4       &kp N5       &kp N6       &kp N0       &none
+   &none  &none        &none        &none        &none        &none          &kp ES_EQL   &kp N4       &kp N5       &kp N6       &kp N0       &none
    &none  &none        &none        &none        &none        &none          &kp ES_MINS  &kp N7       &kp N8       &kp N9       &kp ES_SLSH  &none
                                     &trans       &trans       &trans         &trans       &trans       &trans
             >;
@@ -130,8 +123,8 @@
             display-name = "Sym";
             bindings = <
    &none  &kp ES_IQUE  &kp ES_QUES  &kp ES_IEXCL &kp ES_EXCL  &kp ES_LPAR    &kp ES_RPAR  &kp ES_LBKT  &kp ES_RBKT  &kp ES_LBRC  &kp ES_RBRC  &none
-   &none  &kp GRAVE    &kp ES_TILD  &kp ES_DQUO  &kp ES_SQUO  &kp ES_LT      &kp ES_GT    &kp ES_BSLH  &kp ES_PIPE  &kp ES_AT    &kp ES_HASH  &none
-   &none  &kp CARET    &kp (LS(N5)) &kp ES_AMPS  &kp ES_ASTR  &kp ES_PLUS    &kp ES_MINS  &kp ES_SLSH  &kp ES_EURO  &kp ES_EQL   &kp ES_DLLR  &none
+   &none  &kp ES_DLLR  &kp ES_TILD  &kp ES_DQUO  &kp ES_SQUO  &kp ES_LT      &kp ES_GT    &kp ES_SLSH  &kp ES_PIPE  &kp ES_AT    &kp ES_HASH  &none
+   &none  &kp CARET    &kp (LS(N5)) &kp ES_AMPS  &kp ES_ASTR  &kp ES_PLUS    &kp ES_MINS  &kp ES_BSLH  &kp ES_EURO  &kp ES_EQL   &kp GRAVE    &none
                                     &trans       &trans       &trans         &trans       &trans       &trans
             >;
         };
@@ -156,7 +149,7 @@
 // | NONE |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U  |  I  |  O  |  P  | NONE |
 // | NONE | CTRL| ALT | SHFT| CMD |  G  |   |  H  | CMD | SHFT| ALT | CTRL| NONE |
 // | NONE |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M  |  ,  |  .  |  -  | NONE |
-//                    | CAPS| NAV | SYM |   | ENT | NUM | TAB |
+//                    | CAPS| NAV | SYM |   | SYM | NUM | TAB | 
 
 // NAV - MacOS (Command Key)
 // | NONE | ESC | F5  |CMD-F5|CMD-.|     |   |     | HOME|  UP | END | PGUP| NONE |
@@ -164,14 +157,14 @@
 // | NONE |CMD-Z|CMD-X|CMD-C |CMD-V|     |   | INS |C-LFT|     |C-RGT|     | NONE |
 
 // NUM - Latin Spanish Layout
-// | NONE |     |     |     |     |     |   |  +  |  1  |  2  |  3  |  * | NONE |
-// | NONE |     |     |     |     |     |   |     |  4  |  5  |  6  |  0  | NONE |
+// | NONE |     |     |     |     |     |   |  +  |  1  |  2  |  3  |  *  | NONE |
+// | NONE |     |     |     |     |     |   |  =  |  4  |  5  |  6  |  0  | NONE |
 // | NONE |     |     |     |     |     |   |  -  |  7  |  8  |  9  |  /  | NONE |
 
 // SYM - Logic & Pairs
 // | NONE |  ¿  |  ?  |  ¡  |  !  |  (  |   |  )  |  [  |  ]  |  {  |  }  | NONE |
-// | NONE |  `  |  ~  |  "  |  '  |  <  |   |  >  |  \  |  |  |  @  |  #  | NONE |
-// | NONE |  ^  |  %  |  &  |  * |  +  |   |  -  |  /  |  €  |  =  |  $  | NONE |
+// | NONE |  $  |  ~  |  "  |  '  |  <  |   |  >  |  /  |  |  |  @  |  #  | NONE |
+// | NONE |  ^  |  %  |  &  |  *  |  +  |   |  -  |  \  |  €  |  =  |  `  | NONE |
 
 // FUN - Function & Media
 // | NONE |  F1 |  F2 |  F3 |  F4 |  F5 |   |BRUP |VOLDN|VOLUP|MUTE |PSCRN| NONE |
