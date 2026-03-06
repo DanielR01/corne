@@ -41,6 +41,18 @@
 #define ES_DLLR (LS(N4))     // $
 #define ES_GRV  (LS(RBRKT))  // ` (In Mac LatAm: Shift + key right of ^)
 
+// Fixes for Mac LatAm compatibility via physical keys
+#define ES_CIRC (LS(LBKT))       // ^ is Shift + ´ (the key next to P)
+#define ES_LBRC APOS             // { (key next to Ñ)
+#define ES_RBRC NON_US_HASH      // } (key next to the { key)
+#define ES_LBKT (LS(APOS))       // [ is Shift + {
+#define ES_RBKT (LS(NON_US_HASH))// ] is Shift + }
+#define ES_PIPE GRAVE            // |
+#define ES_AT   (LA(Q))          // @ (Option + Q)
+#define ES_HASH (LS(N3))         // # (Shift + 3)
+#define ES_BSLH (LA(MINUS))      // \ (Option + '?')
+#define ES_EURO (LA(E))          // € (Option + e)
+
 // Layer definitions
 #define DEFAULT 0
 #define NAV     1
@@ -124,7 +136,7 @@
             bindings = <
    &none  &kp ES_IQUE  &kp ES_QUES  &kp ES_IEXCL &kp ES_EXCL  &kp ES_LPAR    &kp ES_RPAR  &kp ES_LBKT  &kp ES_RBKT  &kp ES_LBRC  &kp ES_RBRC  &none
    &none  &kp ES_DLLR  &kp ES_TILD  &kp ES_DQUO  &kp ES_SQUO  &kp ES_LT      &kp ES_GT    &kp ES_SLSH  &kp ES_PIPE  &kp ES_AT    &kp ES_HASH  &none
-   &none  &kp CARET    &kp (LS(N5)) &kp ES_AMPS  &kp ES_ASTR  &kp ES_PLUS    &kp ES_MINS  &kp ES_BSLH  &kp ES_EURO  &kp ES_EQL   &kp GRAVE    &none
+   &none  &kp ES_CIRC  &kp (LS(N5)) &kp ES_AMPS  &kp ES_ASTR  &kp ES_PLUS    &kp ES_MINS  &kp ES_BSLH  &kp ES_EURO  &kp ES_EQL   &none        &none
                                     &trans       &trans       &trans         &trans       &trans       &trans
             >;
         };
@@ -164,7 +176,7 @@
 // SYM - Logic & Pairs
 // | NONE |  ¿  |  ?  |  ¡  |  !  |  (  |   |  )  |  [  |  ]  |  {  |  }  | NONE |
 // | NONE |  $  |  ~  |  "  |  '  |  <  |   |  >  |  /  |  |  |  @  |  #  | NONE |
-// | NONE |  ^  |  %  |  &  |  *  |  +  |   |  -  |  \  |  €  |  =  |  `  | NONE |
+// | NONE |  ^  |  %  |  &  |  *  |  +  |   |  -  |  \  |  €  |  =  | NONE| NONE |
 
 // FUN - Function & Media
 // | NONE |  F1 |  F2 |  F3 |  F4 |  F5 |   |BRUP |VOLDN|VOLUP|MUTE |PSCRN| NONE |
