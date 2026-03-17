@@ -107,7 +107,7 @@
    &none  &kp Q        &kp W        &kp E        &kp R        &kp T          &kp Y        &kp U        &kp I        &kp O        &kp P         &none
    &none  &mt LCTRL A  &mt LALT S   &mt LSHFT D  &mt LGUI F   &kp G          &kp H        &mt RGUI J   &mt RSHFT K  &mt RALT L   &mt RCTRL ES_NTIL &none
    &none  &kp Z        &kp X        &kp C        &kp V        &kp B          &kp N        &kp M        &kp COMMA    &kp DOT      &kp ES_MINS   &none
-                                    &kp CAPS     &lt NAV BSPC &lt SYM SPACE  &lt SYM RET  &lt NUM DEL  &kp TAB
+                                    &kt CAPS     &lt NAV DEL  &lt SYM SPACE  &lt SYM RET  &lt NUM BSPC &kp TAB
             >;
         };
 
@@ -134,8 +134,8 @@
         sym_layer {
             display-name = "Sym";
             bindings = <
-   &none  &kp ES_IQUE  &kp ES_QUES  &kp ES_IEXCL &kp ES_EXCL  &kp ES_LPAR    &kp ES_RPAR  &kp ES_LBKT  &kp ES_RBKT  &kp ES_LBRC  &kp ES_RBRC  &none
-   &none  &kp ES_DLLR  &kp ES_TILD  &kp ES_DQUO  &kp ES_SQUO  &kp ES_LT      &kp ES_GT    &kp ES_SLSH  &kp ES_PIPE  &kp ES_AT    &kp ES_HASH  &none
+   &none  &kp ES_DLLR  &kp ES_TILD  &kp ES_IEXCL &kp ES_EXCL  &kp ES_LT      &kp ES_GT    &kp ES_LBKT  &kp ES_RBKT  &kp ES_LBRC  &kp ES_RBRC  &none
+   &none  &kp ES_IQUE  &kp ES_QUES  &kp ES_DQUO  &kp ES_SQUO  &kp ES_LPAR    &kp ES_RPAR  &kp ES_SLSH  &kp ES_PIPE  &kp ES_AT    &kp ES_HASH  &none
    &none  &kp ES_CIRC  &kp (LS(N5)) &kp ES_AMPS  &kp ES_ASTR  &kp ES_PLUS    &kp ES_MINS  &kp ES_BSLH  &kp ES_EURO  &kp ES_EQL   &none        &none
                                     &trans       &trans       &trans         &trans       &trans       &trans
             >;
@@ -174,8 +174,8 @@
 // | NONE |     |     |     |     |     |   |  -  |  7  |  8  |  9  |  /  | NONE |
 
 // SYM - Logic & Pairs
-// | NONE |  ¿  |  ?  |  ¡  |  !  |  (  |   |  )  |  [  |  ]  |  {  |  }  | NONE |
-// | NONE |  $  |  ~  |  "  |  '  |  <  |   |  >  |  /  |  |  |  @  |  #  | NONE |
+// | NONE |  $  |  ~  |  ¡  |  !  |  <  |   |  >  |  [  |  ]  |  {  |  }  | NONE |
+// | NONE |  ¿  |  ?  |  "  |  '  |  (  |   |  )  |  /  |  |  |  @  |  #  | NONE |
 // | NONE |  ^  |  %  |  &  |  *  |  +  |   |  -  |  \  |  €  |  =  | NONE| NONE |
 
 // FUN - Function & Media
