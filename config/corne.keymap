@@ -52,6 +52,7 @@
 #define ES_HASH (LS(N3))         // # (Shift + 3)
 #define ES_BSLH (LA(MINUS))      // \ (Option + '?')
 #define ES_EURO (LA(E))          // € (Option + e)
+#define ES_ACUT LBKT             // ´ (Acute accent / tilde for áéíóú)
 
 // Layer definitions
 #define DEFAULT 0
@@ -134,9 +135,9 @@
         sym_layer {
             display-name = "Sym";
             bindings = <
-   &none  &kp ES_DLLR  &kp ES_TILD  &kp ES_IEXCL &kp ES_EXCL  &kp ES_LT      &kp ES_GT    &kp ES_LBKT  &kp ES_RBKT  &kp ES_LBRC  &kp ES_RBRC  &none
-   &none  &kp ES_IQUE  &kp ES_QUES  &kp ES_DQUO  &kp ES_SQUO  &kp ES_LPAR    &kp ES_RPAR  &kp ES_SLSH  &kp ES_PIPE  &kp ES_AT    &kp ES_HASH  &none
-   &none  &kp ES_CIRC  &kp (LS(N5)) &kp ES_AMPS  &kp ES_ASTR  &kp ES_PLUS    &kp ES_MINS  &kp ES_BSLH  &kp ES_EURO  &kp ES_EQL   &none        &none
+   &none  &kp ES_IEXCL &kp ES_EXCL  &kp ES_DLLR  &kp ES_TILD  &kp ES_LT      &kp ES_GT    &kp ES_LPAR  &kp ES_RPAR  &kp ES_LBRC  &kp ES_RBRC  &none
+   &none  &kp ES_IQUE  &kp ES_QUES  &kp ES_DQUO  &kp ES_SQUO  &kp ES_LBKT    &kp ES_RBKT  &kp ES_SLSH  &kp ES_PIPE  &kp ES_AT    &kp ES_HASH  &none
+   &none  &kp ES_CIRC  &kp (LS(N5)) &kp ES_AMPS  &kp ES_ASTR  &kp ES_PLUS    &kp ES_MINS  &kp ES_BSLH  &kp ES_EURO  &kp ES_EQL   &kp ES_ACUT  &none
                                     &trans       &trans       &trans         &trans       &trans       &trans
             >;
         };
@@ -174,9 +175,9 @@
 // | NONE |     |     |     |     |     |   |  -  |  7  |  8  |  9  |  /  | NONE |
 
 // SYM - Logic & Pairs
-// | NONE |  $  |  ~  |  ¡  |  !  |  <  |   |  >  |  [  |  ]  |  {  |  }  | NONE |
-// | NONE |  ¿  |  ?  |  "  |  '  |  (  |   |  )  |  /  |  |  |  @  |  #  | NONE |
-// | NONE |  ^  |  %  |  &  |  *  |  +  |   |  -  |  \  |  €  |  =  | NONE| NONE |
+// | NONE |  ¡  |  !  |  $  |  ~  |  <  |   |  >  |  (  |  )  |  {  |  }  | NONE |
+// | NONE |  ¿  |  ?  |  "  |  '  |  [  |   |  ]  |  /  |  |  |  @  |  #  | NONE |
+// | NONE |  ^  |  %  |  &  |  *  |  +  |   |  -  |  \  |  €  |  =  |  ´  | NONE |
 
 // FUN - Function & Media
 // | NONE |  F1 |  F2 |  F3 |  F4 |  F5 |   |BRUP |VOLDN|VOLUP|MUTE |PSCRN| NONE |
