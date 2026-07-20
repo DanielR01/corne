@@ -60,6 +60,7 @@
 #define NUM     2
 #define SYM     3
 #define FUN     4
+#define GAME    5
 
 &mt {
     tapping-term-ms = <200>;
@@ -147,8 +148,18 @@
             bindings = <
    &none  &kp F1       &kp F2       &kp F3       &kp F4       &kp F5         &kp C_BRI_UP &kp C_VOL_DN &kp C_VOL_UP &kp C_MUTE   &kp PSCRN    &none
    &none  &kp F6       &kp F7       &kp F8       &kp F9       &kp F10        &kp C_BRI_DN &kp C_PREV   &kp C_PP     &kp C_NEXT   &bootloader  &none
-   &none  &kp F11      &kp F12      &bt BT_CLR   &bt BT_SEL 0 &bt BT_SEL 1   &bt BT_SEL 2 &bt BT_SEL 3 &none        &none        &sys_reset   &none
+   &none  &kp F11      &kp F12      &bt BT_CLR   &bt BT_SEL 0 &bt BT_SEL 1   &bt BT_SEL 2 &bt BT_SEL 3 &tog GAME    &none        &sys_reset   &none
                                     &trans       &trans       &trans         &trans       &trans       &trans
+            >;
+        };
+
+        game_layer {
+            display-name = "Game";
+            bindings = <
+   &none  &kp Q        &kp W        &kp E        &kp R        &kp T          &kp Y        &kp U        &kp I        &kp O        &kp P         &none
+   &none  &kp A        &kp S        &kp D        &kp F        &kp G          &kp H        &kp J        &kp K        &kp L        &kp ES_NTIL   &none
+   &none  &kp Z        &kp X        &kp C        &kp V        &kp B          &kp N        &kp M        &trans       &kp DOT      &kp ES_MINS   &none
+                                    &kt CAPS     &lt NAV DEL  &kp SPACE      &lt SYM RET  &lt NUM BSPC &kp TAB
             >;
         };
     };
@@ -182,4 +193,11 @@
 // FUN - Function & Media
 // | NONE |  F1 |  F2 |  F3 |  F4 |  F5 |   |BRUP |VOLDN|VOLUP|MUTE |PSCRN| NONE |
 // | NONE |  F6 |  F7 |  F8 |  F9 | F10 |   |BRDN |PREV |PLAY |NEXT |BOOT | NONE |
-// | NONE | F11 | F12 |BTCLR| BT1 | BT2 |   | BT3 | BT4 |     |RESET| NONE |
+// | NONE | F11 | F12 |BTCLR| BT1 | BT2 |   | BT3 | BT4 | TOG |RESET| NONE |
+
+// GAME - Plain keys for gaming (toggle via FUN layer)
+// | NONE |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U  |  I  |  O  |  P  | NONE |
+// | NONE |  A  |  S  |  D  |  F  |  G  |   |  H  |  J  |  K  |  L  |  Ñ  | NONE |
+// | NONE |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M  |  ,  |  .  |  -  | NONE |
+//                    | CAPS| NAV |SPACE|   | RET | NUM | TAB |
+// ESC = hold NAV + tap Q. Toggle = hold NAV+NUM (FUN) + tap TOG.
